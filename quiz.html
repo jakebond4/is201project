@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leeds United Trivia Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: #fff;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0078d7;
+    }
+
+    .question {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #0078d7;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #005fa3;
+    }
+
+    .feedback {
+      font-size: 16px;
+      margin: 15px 0;
+      text-align: center;
+      color: #333;
+    }
+
+    .result {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Leeds United Trivia Quiz</h1>
+    <div id="quiz">
+      <p class="question" id="question">Question goes here...</p>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    // Leeds United Trivia Questions
+    const quizData = [
+      { question: "What is the name of Leeds United's stadium?", options: ["Old Trafford", "Elland Road", "Anfield", "Stamford Bridge"], answer: "Elland Road" },
+      { question: "What is the official song of Leeds United?", options: ["Marching On Together", "Blue Is The Colour", "You'll Never Walk Alone", "Forever Blowing Bubbles"], answer: "Marching On Together" },
+      { question: "How many people can fit in Elland Road stadium?", options: ["37,792", "42,000", "50,000", "29,000"], answer: "37,792" },
+      { question: "Which color is Leeds United's home kit?", options: ["Red", "White", "Blue", "Yellow"], answer: "White" },
+      { question: "Who was Leeds United's manager during their 1992 title-winning season?", options: ["Howard Wilkinson", "Don Revie", "Marcelo Bielsa", "Brian Clough"], answer: "Howard Wilkinson" },
+      { question: "In what year was Leeds United founded?", options: ["1892", "1904", "1919", "1923"], answer: "1919" },
+      { question: "Which team is Leeds United's biggest rival?", options: ["Manchester United", "Liverpool", "Chelsea", "Sheffield Wednesday"], answer: "Manchester United" },
+      { question: "What nickname is associated with Leeds United?", options: ["The Blues", "The Whites", "The Reds", "The Yellows"], answer: "The Whites" },
+      { question: "Who is Leeds United's all-time top scorer?", options: ["Allan Clarke", "Peter Lorimer", "Billy Bremner", "Mark Viduka"], answer: "Peter Lorimer" },
+      { question: "What year did Leeds United last win the English top-flight league title?", options: ["1989", "1990", "1991", "1992"], answer: "1992" }
+    ];
+
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const feedbackElement = document.getElementById("feedback");
+    const resultElement = document.getElementById("result");
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      feedbackElement.textContent = ""; // Clear feedback
+      const currentQuestion = quizData[currentQuestionIndex];
+      questionElement.textContent = currentQuestion.question;
+      optionsElement.innerHTML = "";
+
+      currentQuestion.options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.onclick = () => checkAnswer(option);
+        optionsElement.appendChild(button);
+      });
+    }
+
+    function checkAnswer(selectedOption) {
+      const currentQuestion = quizData[currentQuestionIndex];
+      if (selectedOption === currentQuestion.answer) {
+        feedbackElement.textContent = "✅ Correct!";
+        score++;
+      } else {
+        feedbackElement.textContent = `❌ Wrong! The correct answer is: ${currentQuestion.answer}`;
+      }
+
+      currentQuestionIndex++;
+
+      setTimeout(() => {
+        if (currentQuestionIndex < quizData.length) {
+          loadQuestion();
+        } else {
+          showResult();
+        }
+      }, 1500); // Delay for feedback before moving to next question
+    }
+
+    function showResult() {
+      questionElement.textContent = "";
+      optionsElement.innerHTML = "";
+      feedbackElement.textContent = "";
+      resultElement.textContent = `You scored ${score} out of ${quizData.length}!`;
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

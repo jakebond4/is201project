@@ -1,0 +1,54 @@
+body{font-family:Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+background-color: rgb(6, 63, 63);}
+h1{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+    img{
+        border: darkolivegreen solid; 
+        padding: 1px;
+        margin: 10px;
+    }
+    li:hover{
+text-decoration: underline;
+background-color: rgb(16, 18, 18);
+    }
+a:hover{
+    text-decoration: overline;
+}
+.common{
+    position: absolute;
+    padding: 5px;
+    margin: 5px;
+}
+.bottom{
+    position: absolute;
+    bottom: -370px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    font-style: italic;
+    background-color: darkcyan;
+    font-size: 75%;
+}
+.top{
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: left;
+
+}
+.content{
+    top: 150px;
+    bottom: 50px;
+    left: 0px;
+    right: 0px;
+    padding-bottom: 150px;
+}
+.nav{
+    z-index: 1;
+    position: relative;
+    float: right;
+
+}
+a{
+    color: rgb(190, 174, 153);
+}
